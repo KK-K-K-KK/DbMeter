@@ -11,6 +11,8 @@ import AVFoundation
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var soundLevelLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -52,11 +54,11 @@ class ViewController: UIViewController {
             audioRecorder.record()
             audioRecorder.isMeteringEnabled = true
             
-            Timer.scheduledTimer(withTimeInterval: 1, repeats: true) {
+            Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) {
                 timer in
                 audioRecorder.updateMeters()
                 let db = audioRecorder.averagePower(forChannel: 0)
-                print(db)
+                self.soundLevelLabel.text = "\(String(db)) dB"
             }
         } catch {
             print("ERROR: Failed to start recording process.")
