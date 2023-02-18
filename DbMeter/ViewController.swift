@@ -15,6 +15,13 @@ class ViewController: UIViewController {
     
     var recordTimer : Timer? = nil
     
+    var audioFileUrl: URL {
+        let fileManager = FileManager.default
+        let tempDir = fileManager.temporaryDirectory
+        let filePath = "recording.caf"
+        return tempDir.appendingPathComponent(filePath)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -26,7 +33,7 @@ class ViewController: UIViewController {
         let recordingSession = AVAudioSession.sharedInstance()
         
         do {
-            try recordingSession.setCategory(.playAndRecord)
+            try recordingSession.setCategory(.playAndRecord, options: .defaultToSpeaker)
             try recordingSession.setActive(true)
             
             recordingSession.requestRecordPermission({
@@ -51,10 +58,9 @@ class ViewController: UIViewController {
     }
     
     private func captureAudio() {
-        let audioFileUrl = Bundle.main.resourceURL!.appendingPathComponent("recording.m4a")
-        let settings = [
-            AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
-            AVSampleRateKey: 12000,
+        let settings : [String : Any] = [
+            AVFormatIDKey: Int(kAudioFormatLinearPCM),
+            AVSampleRateKey: 44100.0,
             AVNumberOfChannelsKey: 1,
             AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue
         ]
@@ -66,8 +72,11 @@ class ViewController: UIViewController {
             recordTimer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) {
                 timer in
                 audioRecorder.updateMeters()
-                let db = audioRecorder.averagePower(forChannel: 0).rounded()
-                self.soundLevelLabel.text = "\(String(db)) dB"
+                let linear_db = audioRecorder.averagePower(forChannel: 0)
+//                print(linear_db)
+//                let db = log10(linear_db) * 20
+//                let db = audioRecorder.peakPower(forChannel: 1)
+                self.soundLevelLabel.text = "\(String(linear_db.rounded())) dB"
             }
         } catch {
             print("ERROR: Failed to start recording process.")
