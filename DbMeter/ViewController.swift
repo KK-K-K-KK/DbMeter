@@ -13,6 +13,8 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var soundLevelLabel: UILabel!
     
+    var recordTimer : Timer? = nil
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -35,10 +37,17 @@ class ViewController: UIViewController {
                 }
             })
             
-            captureAudio()
         } catch {
             print("ERROR: Failed to set up recording session. Have you enabled the recording permission?")
         }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        captureAudio()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        stopAudio()
     }
     
     private func captureAudio() {
@@ -54,15 +63,20 @@ class ViewController: UIViewController {
             audioRecorder.record()
             audioRecorder.isMeteringEnabled = true
             
-            Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) {
+            recordTimer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) {
                 timer in
                 audioRecorder.updateMeters()
-                let db = audioRecorder.averagePower(forChannel: 0)
+                let db = audioRecorder.averagePower(forChannel: 0).rounded()
                 self.soundLevelLabel.text = "\(String(db)) dB"
             }
         } catch {
             print("ERROR: Failed to start recording process.")
         }
+    }
+    
+    private func stopAudio() {
+        recordTimer?.invalidate()
+        recordTimer = nil
     }
 }
 
