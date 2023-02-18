@@ -12,7 +12,8 @@ import AVFoundation
 class ViewController: UIViewController {
 
     @IBOutlet weak var soundLevelLabel: UILabel!
-    
+    @IBOutlet weak var maxLevelLabel: UILabel!
+
     var recordTimer : Timer? = nil
     
     var audioFileUrl: URL {
@@ -74,9 +75,16 @@ class ViewController: UIViewController {
                 audioRecorder.updateMeters()
                 let linear_db = audioRecorder.averagePower(forChannel: 0)
                 let calibrated_db = linear_db + 80.0
-//                print(linear_db)
-//                let db = log10(linear_db) * 20
-//                let db = audioRecorder.peakPower(forChannel: 1)
+                if calibrated_db < 60.0 {
+                    self.soundLevelLabel.textColor  = UIColor.systemGreen
+                    self.maxLevelLabel.isHidden = true
+                } else if calibrated_db < 79.0 {
+                    self.soundLevelLabel.textColor = UIColor.systemYellow
+                    self.maxLevelLabel.isHidden = true
+                } else {
+                    self.soundLevelLabel.textColor = UIColor.systemRed
+                    self.maxLevelLabel.isHidden = false
+                }
                 self.soundLevelLabel.text = "\(String(calibrated_db.rounded())) dB"
             }
         } catch {
