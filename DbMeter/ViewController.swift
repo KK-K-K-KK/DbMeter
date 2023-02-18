@@ -27,10 +27,39 @@ class ViewController: UIViewController {
             
             recordingSession.requestRecordPermission({
                 result in
-                guard result else {return}
+                guard result else {
+                    return
+                    // Should alert user, and show instructions to allow microphone access
+                }
             })
+            
+            captureAudio()
         } catch {
             print("ERROR: Failed to set up recording session. Have you enabled the recording permission?")
+        }
+    }
+    
+    private func captureAudio() {
+        let audioFileUrl = Bundle.main.resourceURL!.appendingPathComponent("recording.m4a")
+        let settings = [
+            AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
+            AVSampleRateKey: 12000,
+            AVNumberOfChannelsKey: 1,
+            AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue
+        ]
+        do {
+            let audioRecorder = try AVAudioRecorder(url: audioFileUrl , settings: settings)
+            audioRecorder.record()
+            audioRecorder.isMeteringEnabled = true
+            
+            Timer.scheduledTimer(withTimeInterval: 1, repeats: true) {
+                timer in
+                audioRecorder.updateMeters()
+                let db = audioRecorder.averagePower(forChannel: 0)
+                print(db)
+            }
+        } catch {
+            print("ERROR: Failed to start recording process.")
         }
     }
 }
