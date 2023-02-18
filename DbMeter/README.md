@@ -14,6 +14,12 @@ Let's protect ourselves and live healthier, happier!
 This work is an demo to practice iOS app development with using the microphone.
 
 
+## Limitations
+
+- The sound level meter is not calibrated
+- The built-in microphone can only detect sounds up to around 80dB
+
+
 ## Acknowledgements
 
 https://betterprogramming.pub/detecting-microphone-input-levels-in-your-ios-application-e5b96bf97c5c

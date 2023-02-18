@@ -49,11 +49,11 @@ class ViewController: UIViewController {
         }
     }
     
-    override func viewDidAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         captureAudio()
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         stopAudio()
     }
     
@@ -73,10 +73,11 @@ class ViewController: UIViewController {
                 timer in
                 audioRecorder.updateMeters()
                 let linear_db = audioRecorder.averagePower(forChannel: 0)
+                let calibrated_db = linear_db + 80.0
 //                print(linear_db)
 //                let db = log10(linear_db) * 20
 //                let db = audioRecorder.peakPower(forChannel: 1)
-                self.soundLevelLabel.text = "\(String(linear_db.rounded())) dB"
+                self.soundLevelLabel.text = "\(String(calibrated_db.rounded())) dB"
             }
         } catch {
             print("ERROR: Failed to start recording process.")
