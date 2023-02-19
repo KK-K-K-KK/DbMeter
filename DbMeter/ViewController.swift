@@ -18,6 +18,7 @@ class ViewController: UIViewController {
     
     
     var recordTimer : Timer? = nil
+    var terminateTimer: Timer? = nil
     var maxdb: Float = 0.0
     var recording: Bool = false
     var permissionGranted: Bool = false
@@ -105,7 +106,7 @@ class ViewController: UIViewController {
             recording = true
             
             /* Add 20s timeout to recording to limit disk & power usage */
-            let terminateTimer = Timer.scheduledTimer(withTimeInterval: 20.0, repeats: false) {
+            terminateTimer = Timer.scheduledTimer(withTimeInterval: 3.0, repeats: false) {
                 timer in
                 self.stopAudio()
             }
@@ -117,6 +118,8 @@ class ViewController: UIViewController {
     private func stopAudio() {
         recordTimer?.invalidate()
         recordTimer = nil
+        terminateTimer?.invalidate()
+        terminateTimer = nil
         
         playStopButton.setImage(UIImage(named: "Play"), for: .normal)
         recording = false
