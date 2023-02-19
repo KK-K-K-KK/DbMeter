@@ -102,9 +102,13 @@ class ViewController: UIViewController {
                 self.soundLevelLabel.text = "\(String(self.maxdb.rounded())) dB"
             }
             playStopButton.setImage(UIImage(named: "Stop"), for: .normal)
-//            playStopButton.imageView!.image = UIImage(named: "Stop")
-//            playStopButton.updateConfiguration()
             recording = true
+            
+            /* Add 20s timeout to recording to limit disk & power usage */
+            let terminateTimer = Timer.scheduledTimer(withTimeInterval: 20.0, repeats: false) {
+                timer in
+                self.stopAudio()
+            }
         } catch {
             print("ERROR: Failed to start recording process.")
         }
