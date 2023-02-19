@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="hyu-RT-vyI">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -9,6 +9,24 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="Oon-Dx-g7g">
+            <objects>
+                <navigationController id="hyu-RT-vyI" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="TCh-AN-hvl">
+                        <rect key="frame" x="0.0" y="47" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.85740172680000004" green="0.55096800589999995" blue="0.2042790394" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="barTintColor" red="0.85740172680000004" green="0.55096800589999995" blue="0.2042790394" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="Dm5-zm-dfp"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NaI-5R-BQX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-929" y="3"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -23,8 +41,8 @@
                                 <color key="textColor" systemColor="systemGreenColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="( Limit Exceeded )" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qab-26-KSU">
-                                <rect key="frame" x="95" y="391.66666666666669" width="185" height="29"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="( 已達麥克風上限 )" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qab-26-KSU">
+                                <rect key="frame" x="89" y="391.66666666666669" width="197" height="29"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <color key="textColor" systemColor="systemRedColor"/>
                                 <nil key="highlightedColor"/>
@@ -44,18 +62,40 @@
                                 <color key="textColor" systemColor="systemGray5Color"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nu9-c7-tiG">
+                                <rect key="frame" x="260" y="713.66666666666663" width="85" height="34.333333333333371"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="info.circle.fill" catalog="system" title="說明"/>
+                                <connections>
+                                    <segue destination="zeK-ac-yba" kind="show" id="pZv-FK-yqk"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pZ8-gO-Him">
+                                <rect key="frame" x="128" y="713" width="119" height="35"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="info.circle.fill" catalog="system" title="噪音分級"/>
+                                <connections>
+                                    <segue destination="Vx1-Pr-bcW" kind="show" id="5hr-j8-nCJ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" red="0.85740172682386451" green="0.55096800590874195" blue="0.20427903943987602" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="nu9-c7-tiG" secondAttribute="bottom" constant="30" id="B6I-f9-EK0"/>
                             <constraint firstItem="bvU-JJ-hz8" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="KM8-Wq-nKi"/>
                             <constraint firstItem="Qab-26-KSU" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="M0U-Sn-CdD"/>
                             <constraint firstItem="fE8-6V-JWr" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="100" id="Omf-rC-ybB"/>
                             <constraint firstItem="bvU-JJ-hz8" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="-64" id="TcE-nL-kHE"/>
+                            <constraint firstItem="pZ8-gO-Him" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="iZA-aZ-ey9"/>
                             <constraint firstItem="fE8-6V-JWr" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="icK-oT-kwN"/>
                             <constraint firstItem="Qab-26-KSU" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="obr-aw-lZe"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="pZ8-gO-Him" secondAttribute="bottom" constant="30" id="pdO-Vu-pyX"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="nu9-c7-tiG" secondAttribute="trailing" constant="30" id="yyb-su-M7w"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="bVd-M5-O5H"/>
                     <connections>
                         <outlet property="maxLevelLabel" destination="Qab-26-KSU" id="9PC-cP-xaE"/>
                         <outlet property="playStopButton" destination="fE8-6V-JWr" id="J1g-mp-BY4"/>
@@ -64,16 +104,130 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-50" y="4"/>
+            <point key="canvasLocation" x="-50.399999999999999" y="3.6945812807881775"/>
+        </scene>
+        <!--說明-->
+        <scene sceneID="drL-Tb-CBR">
+            <objects>
+                <viewController id="zeK-ac-yba" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5PI-JF-wTj">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="使用說明" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uD3-CE-dyz">
+                                <rect key="frame" x="25" y="111" width="70" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="Zah-BY-OSe"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" systemColor="systemBackgroundColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="麥克風權限說明" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rUj-e7-CND">
+                                <rect key="frame" x="25" y="292" width="122" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="5lG-dC-o1S"/>
+                                    <constraint firstAttribute="width" constant="122" id="iNT-So-mEk"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" systemColor="systemBackgroundColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kty-Ib-itq">
+                                <rect key="frame" x="25" y="147" width="325" height="120"/>
+                                <color key="backgroundColor" systemColor="systemGray5Color"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="120" id="Okb-3r-3kd"/>
+                                </constraints>
+                                <string key="text">dB Meter 是一款測量周圍噪音的 app。
+按下開始鍵開始測量。螢幕上會顯示分貝數，代表目前所測到的最大噪音。
+按下停止鍵結束測量。</string>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="請到 設定 &gt; 隱私與安全性 &gt; 麥克風 &gt; db Meter 將麥克風權限打開。" textAlignment="natural" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XSU-T7-dHm">
+                                <rect key="frame" x="25" y="328" width="325" height="53"/>
+                                <color key="backgroundColor" systemColor="systemGray5Color"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="53" id="RrJ-Ve-5Mq"/>
+                                </constraints>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="a5B-bs-1W9"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" systemColor="systemOrangeColor"/>
+                        <constraints>
+                            <constraint firstItem="rUj-e7-CND" firstAttribute="leading" secondItem="a5B-bs-1W9" secondAttribute="leading" constant="25" id="Lfe-og-aO7"/>
+                            <constraint firstItem="XSU-T7-dHm" firstAttribute="leading" secondItem="a5B-bs-1W9" secondAttribute="leading" constant="25" id="UEs-Yx-XG6"/>
+                            <constraint firstItem="kty-Ib-itq" firstAttribute="top" secondItem="uD3-CE-dyz" secondAttribute="bottom" constant="15" id="Vvq-H0-CuJ"/>
+                            <constraint firstItem="a5B-bs-1W9" firstAttribute="trailing" secondItem="XSU-T7-dHm" secondAttribute="trailing" constant="25" id="X81-3d-Nph"/>
+                            <constraint firstItem="uD3-CE-dyz" firstAttribute="top" secondItem="a5B-bs-1W9" secondAttribute="top" constant="20" id="hNk-CG-TpA"/>
+                            <constraint firstItem="XSU-T7-dHm" firstAttribute="top" secondItem="rUj-e7-CND" secondAttribute="bottom" constant="15" id="uxY-l5-7yr"/>
+                            <constraint firstItem="kty-Ib-itq" firstAttribute="leading" secondItem="a5B-bs-1W9" secondAttribute="leading" constant="25" id="vFd-T2-NnM"/>
+                            <constraint firstItem="uD3-CE-dyz" firstAttribute="leading" secondItem="a5B-bs-1W9" secondAttribute="leading" constant="25" id="vlh-4D-Azj"/>
+                            <constraint firstItem="rUj-e7-CND" firstAttribute="top" secondItem="kty-Ib-itq" secondAttribute="bottom" constant="25" id="zVW-o9-Y5M"/>
+                            <constraint firstItem="a5B-bs-1W9" firstAttribute="trailing" secondItem="kty-Ib-itq" secondAttribute="trailing" constant="25" id="zb6-g4-gMl"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="說明" id="K7P-V9-7oZ"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XhR-WZ-Z9c" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="795" y="3.1690140845070425"/>
+        </scene>
+        <!--噪音分級-->
+        <scene sceneID="KZf-JZ-gOy">
+            <objects>
+                <viewController id="Vx1-Pr-bcW" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="X5Q-Ob-B4J">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="noise-meter" translatesAutoresizingMaskIntoConstraints="NO" id="U9v-sM-OR1">
+                                <rect key="frame" x="16" y="198.66666666666666" width="343" height="414.66666666666674"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="U9v-sM-OR1" secondAttribute="height" multiplier="67:81" id="EeE-if-u1e"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Ln3-bc-Da3"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="U9v-sM-OR1" firstAttribute="centerX" secondItem="X5Q-Ob-B4J" secondAttribute="centerX" id="dch-oR-Zvx"/>
+                            <constraint firstItem="U9v-sM-OR1" firstAttribute="centerY" secondItem="X5Q-Ob-B4J" secondAttribute="centerY" id="jt5-Py-Wmc"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="U9v-sM-OR1" secondAttribute="trailing" id="kkv-mP-3W5"/>
+                            <constraint firstItem="U9v-sM-OR1" firstAttribute="leading" secondItem="X5Q-Ob-B4J" secondAttribute="leadingMargin" id="yk8-XJ-Ef5"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="噪音分級" id="jQ1-l6-04a"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Hj8-AK-rOE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="795" y="806"/>
         </scene>
     </scenes>
     <resources>
         <image name="Play" width="128" height="128"/>
+        <image name="info.circle.fill" catalog="system" width="128" height="123"/>
+        <image name="noise-meter" width="1072" height="1296"/>
+        <systemColor name="labelColor">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemGray5Color">
             <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGreenColor">
             <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemOrangeColor">
+            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
             <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
