@@ -20,6 +20,7 @@ class ViewController: UIViewController {
     var recordTimer : Timer? = nil
     var maxdb: Float = 0.0
     var recording: Bool = false
+    var permissionGranted: Bool = false
     
     var audioFileUrl: URL {
         let fileManager = FileManager.default
@@ -32,7 +33,6 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         maxLevelLabel.isHidden = true
-        setUpAudioCapture()
     }
 
     private func setUpAudioCapture() {
@@ -44,9 +44,12 @@ class ViewController: UIViewController {
             
             recordingSession.requestRecordPermission({
                 result in
-                guard result else {
-                    return
-                    // Should alert user, and show instructions to allow microphone access
+                self.permissionGranted = result
+                if !result {
+                    let alert = UIAlertController(title: "錯誤", message: "麥克風權限未開啟，請參考 🅘說明 ", preferredStyle: .alert)
+                    let alertAction = UIAlertAction(title: "好的", style: .default)
+                    alert.addAction(alertAction)
+                    self.present(alert, animated: true)
                 }
             })
             
@@ -59,6 +62,7 @@ class ViewController: UIViewController {
         if recording {
             stopAudio()
         } else {
+            setUpAudioCapture()
             captureAudio()
         }
     }
