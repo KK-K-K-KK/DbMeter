@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
@@ -14,24 +14,34 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="DbMeter" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100 dB" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bvU-JJ-hz8">
-                                <rect key="frame" x="87.333333333333329" y="319" width="218.33333333333337" height="86"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00.0 dB" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bvU-JJ-hz8">
+                                <rect key="frame" x="65.666666666666686" y="299" width="244" height="86"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="72"/>
-                                <color key="textColor" systemColor="systemYellowColor"/>
+                                <color key="textColor" systemColor="systemGreenColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PYA-8g-VdA">
-                                <rect key="frame" x="264" y="755" width="90" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <buttonConfiguration key="configuration" style="plain" image="info.circle.fill" catalog="system" title=" Help"/>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="( Maximum )" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qab-26-KSU">
-                                <rect key="frame" x="127.33333333333333" y="410" width="138.66666666666669" height="32"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="( Limit Exceeded )" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qab-26-KSU">
+                                <rect key="frame" x="95" y="391.66666666666669" width="185" height="29"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <color key="textColor" systemColor="systemRedColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fE8-6V-JWr">
+                                <rect key="frame" x="111.66666666666669" y="435" width="152" height="142"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="Play"/>
+                                <connections>
+                                    <action selector="pressPlayStopButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Lg0-Jy-ixx"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R0Z-nq-f07">
+                                <rect key="frame" x="90" y="279" width="0.0" height="0.0"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" systemColor="systemGray5Color"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -40,12 +50,15 @@
                         <constraints>
                             <constraint firstItem="bvU-JJ-hz8" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="KM8-Wq-nKi"/>
                             <constraint firstItem="Qab-26-KSU" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="M0U-Sn-CdD"/>
+                            <constraint firstItem="fE8-6V-JWr" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="100" id="Omf-rC-ybB"/>
                             <constraint firstItem="bvU-JJ-hz8" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="-64" id="TcE-nL-kHE"/>
+                            <constraint firstItem="fE8-6V-JWr" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="icK-oT-kwN"/>
                             <constraint firstItem="Qab-26-KSU" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="obr-aw-lZe"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="maxLevelLabel" destination="Qab-26-KSU" id="9PC-cP-xaE"/>
+                        <outlet property="playStopButton" destination="fE8-6V-JWr" id="J1g-mp-BY4"/>
                         <outlet property="soundLevelLabel" destination="bvU-JJ-hz8" id="JOI-A0-LHk"/>
                     </connections>
                 </viewController>
@@ -55,12 +68,15 @@
         </scene>
     </scenes>
     <resources>
-        <image name="info.circle.fill" catalog="system" width="128" height="123"/>
+        <image name="Play" width="128" height="128"/>
+        <systemColor name="systemGray5Color">
+            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemRedColor">
             <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemYellowColor">
-            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

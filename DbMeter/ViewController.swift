@@ -14,7 +14,12 @@ class ViewController: UIViewController {
     @IBOutlet weak var soundLevelLabel: UILabel!
     @IBOutlet weak var maxLevelLabel: UILabel!
 
+    @IBOutlet weak var playStopButton: UIButton!
+    
+    
     var recordTimer : Timer? = nil
+    var maxdb: Float = 0.0
+    var recording: Bool = false
     
     var audioFileUrl: URL {
         let fileManager = FileManager.default
@@ -26,7 +31,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        
+        maxLevelLabel.isHidden = true
         setUpAudioCapture()
     }
 
@@ -50,11 +55,15 @@ class ViewController: UIViewController {
         }
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        captureAudio()
+    @IBAction func pressPlayStopButton(_ sender: Any) {
+        if recording {
+            stopAudio()
+        } else {
+            captureAudio()
+        }
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
+    override func viewDidDisappear(_ animated: Bool) {
         stopAudio()
     }
     
@@ -75,18 +84,23 @@ class ViewController: UIViewController {
                 audioRecorder.updateMeters()
                 let linear_db = audioRecorder.averagePower(forChannel: 0)
                 let calibrated_db = linear_db + 80.0
-                if calibrated_db < 60.0 {
+                self.maxdb = max(calibrated_db, self.maxdb)
+                if self.maxdb < 60.0 {
                     self.soundLevelLabel.textColor  = UIColor.systemGreen
                     self.maxLevelLabel.isHidden = true
-                } else if calibrated_db < 79.0 {
+                } else if self.maxdb < 79.0 {
                     self.soundLevelLabel.textColor = UIColor.systemYellow
                     self.maxLevelLabel.isHidden = true
                 } else {
                     self.soundLevelLabel.textColor = UIColor.systemRed
                     self.maxLevelLabel.isHidden = false
                 }
-                self.soundLevelLabel.text = "\(String(calibrated_db.rounded())) dB"
+                self.soundLevelLabel.text = "\(String(self.maxdb.rounded())) dB"
             }
+            playStopButton.setImage(UIImage(named: "Stop"), for: .normal)
+//            playStopButton.imageView!.image = UIImage(named: "Stop")
+//            playStopButton.updateConfiguration()
+            recording = true
         } catch {
             print("ERROR: Failed to start recording process.")
         }
@@ -95,6 +109,10 @@ class ViewController: UIViewController {
     private func stopAudio() {
         recordTimer?.invalidate()
         recordTimer = nil
+        
+        playStopButton.setImage(UIImage(named: "Play"), for: .normal)
+        recording = false
+        maxdb = 0.0
     }
 }
 
