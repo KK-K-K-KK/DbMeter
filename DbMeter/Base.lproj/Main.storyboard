@@ -133,7 +133,7 @@
                                 <color key="textColor" systemColor="systemBackgroundColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kty-Ib-itq">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="kty-Ib-itq">
                                 <rect key="frame" x="25" y="100" width="270" height="120"/>
                                 <color key="backgroundColor" systemColor="systemGray5Color"/>
                                 <constraints>
@@ -146,7 +146,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="請到 設定 &gt; 隱私與安全性 &gt; 麥克風 &gt; db Meter 將麥克風權限打開。" textAlignment="natural" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XSU-T7-dHm">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="請到 設定 &gt; 隱私與安全性 &gt; 麥克風 &gt; db Meter 將麥克風權限打開。" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="XSU-T7-dHm">
                                 <rect key="frame" x="25" y="281" width="270" height="53"/>
                                 <color key="backgroundColor" systemColor="systemGray5Color"/>
                                 <constraints>
